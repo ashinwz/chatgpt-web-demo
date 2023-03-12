@@ -32,7 +32,7 @@ export default defineConfig((env) => {
       open: false,
       proxy: {
         '/api': {
-          target: viteEnv.VITE_APP_API_BASE_URL,
+          target: 'https://chatgpt-web-demo-lime.vercel.app/',
           changeOrigin: true, // 允许跨域
           rewrite: path => path.replace('/api/', '/'),
         },
