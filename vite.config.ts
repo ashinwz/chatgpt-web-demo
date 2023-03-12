@@ -1,11 +1,10 @@
 import path from 'path'
-// import { defineConfig, loadEnv } from 'vite'
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig((env) => {
-  // const viteEnv = loadEnv(env.mode, process.cwd()) as unknown as ImportMetaEnv
+  const viteEnv = loadEnv(env.mode, process.cwd()) as unknown as ImportMetaEnv
 
   return {
     resolve: {
@@ -33,7 +32,7 @@ export default defineConfig((env) => {
       open: false,
       proxy: {
         '/api': {
-          target: 'https://chatgpt-web-demo-lime.vercel.app/',
+          target: viteEnv.VITE_APP_API_BASE_URL,
           changeOrigin: true, // 允许跨域
           rewrite: path => path.replace('/api/', '/'),
         },
